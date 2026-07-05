@@ -77,6 +77,22 @@ class Ledger {
 class ChainPulseApp {
     private ledger: Ledger;
 
+    constructor() {
+        this.ledger = new Ledger();
+    }
+
+    run(): void {
+        console.log("Starting ChainPulse Tracker...\n");
+
+        this.ledger.createTransaction("Alice", "Bob", 20, "TRANSFER");
+        this.ledger.createTransaction("Bob", "Alice", 10, "TRANSFER");
+        this.ledger.createTransaction("Miner", "Alice", 15, "REWARD");
+        this.ledger.createTransaction("Alice", "Bob", 200, "TRANSFER"); // invalid case
+
+        this.ledger.printChain();
+        this.ledger.printBalances();
+
+        console.log("\nSimulation complete.");
     }
 }
 
